@@ -21,10 +21,10 @@
                         <img src="../assets/images/users/user-9.jpg" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="media-body align-self-center text-truncate ml-3">
-                        <!-- <h5 class="mt-0 mb-1 font-weight-semibold">{{namaUser.user.name}}</h5> -->
-                        <!-- <p class="text-uppercase mb-0 font-12" v-if="namaUser.user.group_id === 2">Asosiasi</p>
-                        <p class="text-uppercase mb-0 font-12" v-if="namaUser.user.group_id === 1">Admin</p>
-                        <p class="text-uppercase mb-0 font-12" v-if="namaUser.user.group_id === 3">Rayon</p> -->
+                        <h5 class="mt-0 mb-1 font-weight-semibold">{{nama}}</h5>
+                        <p class="text-uppercase mb-0 font-12" v-if="group_id === 2">Asosiasi</p>
+                        <p class="text-uppercase mb-0 font-12" v-if="group_id === 1">Admin</p>
+                        <p class="text-uppercase mb-0 font-12" v-if="group_id === 3">Rayon</p>
                     </div><!--end media-body-->
                 </div>
             </div>
@@ -64,11 +64,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
-                            <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> My Wallet</a>
+                            <!-- <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> My Wallet</a>
                             <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted mr-2"></i> Settings</a>
                             <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted mr-2"></i> Lock screen</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="dripicons-exit text-muted mr-2"></i> Logout</a>
+                            <div class="dropdown-divider"></div> -->
+                            <router-link class="dropdown-item" to="/logout"><i class="dripicons-exit text-muted mr-2"></i> Logout</router-link>
                         </div>
                     </li>
                 </ul><!--end topbar-nav-->
@@ -96,7 +96,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import { MonitorIcon, MenuIcon, UsersIcon } from 'vue-feather-icons';
 
 export default {
@@ -112,20 +112,20 @@ export default {
     MenuIcon,
     UsersIcon,
   },
-//   beforeCreate() {
-//     axios.get(`${process.env.VUE_APP_API}user`, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.token}`,
-//       },
-//     })
-//       .then((res) => {
-//         console.log(res);
-//         this.namaUser = res.data;
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   },
+  created() {
+    axios.get(`${process.env.VUE_APP_API}user`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+      .then((res) => {
+        this.group_id = res.data.user.group_id;
+        this.nama = res.data.user.name;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };
 </script>
 

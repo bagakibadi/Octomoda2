@@ -120,17 +120,24 @@
                               <tr>
                                 <th>No</th>
                                 <th>Rayon</th>
+                                <th>Nama Rayon</th>
                                 <th>Wilayah</th>
-                                <th>Status</th>
+                                <th>Email</th>
+                                <th>Password</th>
                                 <th>Actions</th>
                               </tr>
                             </thead>
-                            <tbody v-for="data in datarayon" :key="data.id">
+                            <tbody v-for="(data,index) in datarayon" :key="index.id">
                               <tr>
-                                <td style="width: 5%;text-align: center;">{{data.id}}</td>
-                                <td>{{data.nama}}</td>
-                                <td>{{data.prov_id}}</td>
-                                <td style="width: 12%;">{{data.user.verified}}</td>
+                                <td style="width: 5%;text-align: center;" >{{data.id}}</td>
+                                <td>
+                                  <p v-if="data.rayon_id === 2">DPW / DPD</p>
+                                  <p v-else>DPC / PKH</p>
+                                </td>
+                                <td @click="detailRayon(index)">{{data.nama}}</td>
+                                <td>{{data.provinsi.keterangan}}</td>
+                                <td>{{data.email}}</td>
+                                <td>{{data.password}}</td>
                                 <td style="width: 10%;">
                                   <div class="d-flex justify-content-around">
                                     <button class="btn"><i class="fa fa-edit" style="color: rgba(242, 201, 76, 1);font-size: 20px;"></i></button>
@@ -149,6 +156,73 @@
             <!-- end page content -->
     </div>
         <!-- end page-wrapper -->
+    <div class="modals2" id="modal2">
+      <div class="overlay-modal"></div>
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-7">
+          <div class="card">
+            <div class="card-body">
+              <div class="logo-exit">
+                <div class="octomoda-img">
+                  <img class="logo-octomoda" src="../assets/images/octomoda.png" alt="">
+                  <img class="text-octomoda" src="../assets/images/octomodatext.png" alt="">
+                </div>
+                <div>
+                  <a href="#" @click="closemodal2">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="head-modal text-center">
+                <h1>Edit Rayon</h1>
+              </div>
+              <div class="d-flex justify-content-between mt-4">
+                <div class="col-md-4">
+                    <p>No. Anggota :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Nama Asosiasi :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Rayon :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Nama Perusahaan :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Email :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Alamat Kantor :</p>
+                    <p class="font-weight-bold">0001</p>
+                </div>
+                <div class="col-md-4">
+                    <p>Provinsi :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Kota :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>No. Telepon :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Website :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>No. Akte Notaris :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>No. NPWP :</p>
+                    <p class="font-weight-bold">0001</p>
+                </div>
+                <div class="col-md-4">
+                    <p>No. Kemenkumham :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>No. NIK :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Nama :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>Jabatan :</p>
+                    <p class="font-weight-bold">0001</p>
+                    <p>No. Handphone :</p>
+                    <p class="font-weight-bold">0001</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="modal" class="modals">
       <div class="overlay-modal"></div>
       <div class="row justify-content-center align-items-center h-100">
@@ -171,6 +245,15 @@
               </div>
                 <form action="" class="form-tambah-rayon" @submit.prevent="tambahRayon">
                   <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-tambah">
+                        <label for="rayon">Rayon</label>
+                        <select name="rayon" id="rayon" v-model="tambahrayon.rayon_id" class="form-control" required>
+                          <option value="" selected>Pilih Rayon</option>
+                          <option :value="item.id" v-for="(item,index) in rayons" :key="index.id">{{item.nama}}</option>
+                        </select>
+                      </div>
+                    </div>
                     <div class="col-md-6">
                       <div class="form-tambah">
                         <label for="namaRayon">Nama Rayon</label>
@@ -286,6 +369,7 @@ export default {
   data() {
     return {
       tambahrayon: {
+        rayon_id: '',
         nama: '',
         alamat: '',
         rt: '',
@@ -312,6 +396,7 @@ export default {
     ...mapState(['kabupaten']),
     ...mapState(['kecamatan']),
     ...mapState(['kelurahan']),
+    ...mapState(['rayons']),
     prov_id() {
       return this.tambahrayon.prov_id;
     },
@@ -323,13 +408,22 @@ export default {
     },
   },
   methods: {
+    detailRayon(a) {
+      console.log(a);
+      console.log(this.datarayon[a]);
+    },
     closemodal() {
       document.getElementById('modal').style.display = 'none';
+      // console.log(document.getElementById('modal'));
+    },
+    closemodal2() {
+      document.getElementById('modal2').style.display = 'none';
       // console.log(document.getElementById('modal'));
     },
     tambahRayon() {
       axios.post(`${process.env.VUE_APP_API}data_rayon`, {
         nama: this.tambahrayon.nama,
+        rayon_id: this.tambahrayon.rayon_id,
         alamat: this.tambahrayon.alamat,
         rt: this.tambahrayon.rt,
         rw: this.tambahrayon.rw,
@@ -506,6 +600,10 @@ export default {
       url: 'daerah/provinsi',
       mutation: 'GET_PROVINSI',
     });
+    this.$store.dispatch('getApi', {
+      url: 'rayon',
+      mutation: 'GET_RAYONID',
+    });
   },
   watch: {
     prov_id(val) {
@@ -592,6 +690,20 @@ export default {
     opacity: 1;
     background: transparent;
     display: none;
+  }
+  .modals2{
+    z-index: 9991;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    opacity: 1;
+    background: transparent;
+    display: none;
+  }
+  .modals2 p{
+    margin: 0 0 5px 0;
   }
   .form-search select{
     /* border: none; */

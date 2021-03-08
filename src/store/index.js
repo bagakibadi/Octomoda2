@@ -12,6 +12,7 @@ export default new Vuex.Store({
     kelurahan: [],
     profile: [],
     kabupaten: [],
+    rayons: [],
   },
   mutations: {
     GET_KATEGORI(state, data) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     GET_PROFILE_DATA(state, data) {
       state.profile = data.profile;
+    },
+    GET_RAYONID(state, data) {
+      state.rayons = data.rayon;
     },
     // POST_PROFILE(state, data) {
     //   state.

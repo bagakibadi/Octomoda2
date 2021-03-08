@@ -6,7 +6,7 @@ import Logout from '../views/Logout.vue';
 import Registrasi from '../views/Registrasi.vue';
 import Profile from '../views/Profile.vue';
 import Keanggotaan from '../views/Keanggotaan.vue';
-import KeanggotaanApproval from '../views/KeanggotaanApproval';
+import KeanggotaanApproval from '../views/KeanggotaanApproval.vue';
 
 Vue.use(VueRouter);
 

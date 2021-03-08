@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue';
 import Registrasi from '../views/Registrasi.vue';
 import Profile from '../views/Profile.vue';
 import Keanggotaan from '../views/Keanggotaan.vue';
+import KeanggotaanApproval from '../views/KeanggotaanApproval';
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/keanggotaan',
     name: 'Keanggotaan',
     component: Keanggotaan,
+  },
+  {
+    path: '/approval-keanggotaan',
+    name: 'Approval Keanggotaan',
+    component: KeanggotaanApproval,
   },
 ];
 

@@ -39,7 +39,7 @@
                         </span>
                     </router-link>
                     <router-link to="/keanggotaan" class="menu-link">
-                        <monitor-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></monitor-icon>
+                        <users-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></users-icon>
                         <span>Keanggotaan</span>
                         <span class="menu-arrow">
                             <i class="fa fa-angle-right"></i>
@@ -47,7 +47,6 @@
                     </router-link>
                 </li>
             </ul>
-
         </div>
         <!-- end left-sidenav-->
 
@@ -61,7 +60,7 @@
                         <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
                             <img src="../assets/images/users/user-4.jpg" alt="profile-user" class="rounded-circle" />
-                            <span class="ml-1 nav-user-name hidden-sm">Amelia <i class="fa fa-angle-down"></i> </span>
+                            <span class="ml-1 nav-user-name hidden-sm">{{nama}} <i class="fa fa-angle-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
@@ -98,17 +97,20 @@
 
 <script>
 // import axios from 'axios';
-import { MonitorIcon, MenuIcon } from 'vue-feather-icons';
+import { MonitorIcon, MenuIcon, UsersIcon } from 'vue-feather-icons';
 
 export default {
   data() {
     return {
-      namaUser: null,
+      nama: '',
+      group_id: '',
+    //   namaUser: null,
     };
   },
   components: {
     MonitorIcon,
     MenuIcon,
+    UsersIcon,
   },
 //   beforeCreate() {
 //     axios.get(`${process.env.VUE_APP_API}user`, {

@@ -21,10 +21,10 @@
                         <img src="../assets/images/users/user-9.jpg" alt="" class="thumb-md rounded-circle">
                     </div>
                     <div class="media-body align-self-center text-truncate ml-3">
-                        <h5 class="mt-0 mb-1 font-weight-semibold">{{namaUser.user.name}}</h5>
-                        <p class="text-uppercase mb-0 font-12" v-if="namaUser.user.group_id === 2">Asosiasi</p>
+                        <!-- <h5 class="mt-0 mb-1 font-weight-semibold">{{namaUser.user.name}}</h5> -->
+                        <!-- <p class="text-uppercase mb-0 font-12" v-if="namaUser.user.group_id === 2">Asosiasi</p>
                         <p class="text-uppercase mb-0 font-12" v-if="namaUser.user.group_id === 1">Admin</p>
-                        <p class="text-uppercase mb-0 font-12" v-if="namaUser.user.group_id === 3">Rayon</p>
+                        <p class="text-uppercase mb-0 font-12" v-if="namaUser.user.group_id === 3">Rayon</p> -->
                     </div><!--end media-body-->
                 </div>
             </div>
@@ -34,6 +34,13 @@
                     <router-link to="/" class="menu-link">
                         <monitor-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></monitor-icon>
                         <span>Dashboard</span>
+                        <span class="menu-arrow">
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+                    </router-link>
+                    <router-link to="/keanggotaan" class="menu-link">
+                        <monitor-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></monitor-icon>
+                        <span>Keanggotaan</span>
                         <span class="menu-arrow">
                             <i class="fa fa-angle-right"></i>
                         </span>
@@ -90,7 +97,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import { MonitorIcon, MenuIcon } from 'vue-feather-icons';
 
 export default {
@@ -103,20 +110,20 @@ export default {
     MonitorIcon,
     MenuIcon,
   },
-  beforeCreate() {
-    axios.get(`${process.env.VUE_APP_API}user`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        this.namaUser = res.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
+//   beforeCreate() {
+//     axios.get(`${process.env.VUE_APP_API}user`, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.token}`,
+//       },
+//     })
+//       .then((res) => {
+//         console.log(res);
+//         this.namaUser = res.data;
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   },
 };
 </script>
 

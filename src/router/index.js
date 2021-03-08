@@ -5,6 +5,7 @@ import Login from '../views/Login.vue';
 import Logout from '../views/Logout.vue';
 import Registrasi from '../views/Registrasi.vue';
 import Profile from '../views/Profile.vue';
+import Keanggotaan from '../views/Keanggotaan.vue';
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+  },
+  {
+    path: '/keanggotaan',
+    name: 'Keanggotaan',
+    component: Keanggotaan,
   },
 ];
 

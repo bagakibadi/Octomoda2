@@ -5,7 +5,7 @@
         <div class="left-sidenav">
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="../dashboard/crm-index.html" class="logo">
+                <a href="/" class="logo">
                     <span>
                         <img src="../assets/images/octomoda.png" alt="logo-small" class="logo-sm">
                     </span>
@@ -24,23 +24,31 @@
                         <h5 class="mt-0 mb-1 font-weight-semibold">{{nama}}</h5>
                         <p class="text-uppercase mb-0 font-12" v-if="group_id === 2">Asosiasi</p>
                         <p class="text-uppercase mb-0 font-12" v-if="group_id === 1">Admin</p>
-                        <p class="text-uppercase mb-0 font-12" v-if="group_id === 3">Rayon</p>
+                        <p class="text-uppercase mb-0 font-12" v-if="group_id === 3">Perusahaan</p>
+                        <p class="text-uppercase mb-0 font-12" v-if="group_id === 5">DPW</p>
                     </div><!--end media-body-->
                 </div>
             </div>
             <ul class="metismenu left-sidenav-menu slimscroll">
                 <li class="menu-label">Main</li>
                 <li class="leftbar-menu-item">
-                    <router-link to="/" class="menu-link">
+                    <router-link to="/" class="menu-link" v-if="group_id === 1 || group_id === 2">
                         <monitor-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></monitor-icon>
                         <span>Dashboard</span>
                         <span class="menu-arrow">
                             <i class="fa fa-angle-right"></i>
                         </span>
                     </router-link>
-                    <router-link to="/keanggotaan" class="menu-link">
+                    <router-link to="/perusahaan" class="menu-link" v-if="group_id === 5">
                         <users-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></users-icon>
-                        <span>Keanggotaan</span>
+                        <span>Perusahaan</span>
+                        <span class="menu-arrow">
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+                    </router-link>
+                    <router-link to="/profesional" class="menu-link" v-if="group_id === 5">
+                        <users-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></users-icon>
+                        <span>Profesional</span>
                         <span class="menu-arrow">
                             <i class="fa fa-angle-right"></i>
                         </span>

@@ -13,6 +13,7 @@ export default new Vuex.Store({
     profile: [],
     kabupaten: [],
     rayons: [],
+    asosiasi: [],
   },
   mutations: {
     GET_KATEGORI(state, data) {
@@ -36,9 +37,12 @@ export default new Vuex.Store({
     GET_RAYONID(state, data) {
       state.rayons = data.rayon;
     },
-    // POST_PROFILE(state, data) {
-    //   state.
-    // }
+    GET_RAYONSS(state, data) {
+      state.rayons = data.data_rayon;
+    },
+    GET_ASOSIASI(state, data) {
+      state.asosiasi = data.asosiasi;
+    },
   },
   actions: {
     getApi({ commit }, proto) {
@@ -66,21 +70,6 @@ export default new Vuex.Store({
           });
       });
     },
-    // postRayon({ commit }) {
-    //   return new Promise((resolve, reject) => {
-    //     const rayon = new FormData();
-    //     rayon.append('id', localStorage.id);
-    //     rayon.append('token', localStorage.token);
-    //     Axios.post(`${`${process.env.VUE_APP_API}getrayon.php`}`, rayon)
-    //       .then((res) => {
-    //         commit('GET_RAYON', res.data);
-    //         resolve(res);
-    //       })
-    //       .catch((err) => {
-    //         reject(new Error(err));
-    //       });
-    //   });
-    // },
     patchApi({ commit }, proto) {
       return new Promise((resolve, reject) => {
         Axios.patch(`https://octomoda.tech/api/${proto.url}`, proto.data)

@@ -47,10 +47,10 @@
                                         </tr>
                                         </thead>
 
-                                        <tbody id="asosiasitable" v-for="data in dataAsosiasi" :key="data.id">
+                                        <tbody id="asosiasitable" v-for="(data,index) in dataAsosiasi" :key="index.id">
                                           <tr>
                                             <td>
-                                              <a href="#">
+                                              <a href="#" @click="viewAsosiasi(index)">
                                                 <div class="d-flex logoasosiasi">
                                                   <img :src="data.logo_asosiasi" alt="">
                                                   <p>
@@ -134,13 +134,13 @@
                                   <p v-if="data.rayon_id === 2">DPW / DPD</p>
                                   <p v-else>DPC / PKH</p>
                                 </td>
-                                <td @click="detailRayon(index)">{{data.nama}}</td>
+                                <td>{{data.nama}}</td>
                                 <td>{{data.provinsi.keterangan}}</td>
                                 <td>{{data.email}}</td>
                                 <td>{{data.password}}</td>
                                 <td style="width: 10%;">
                                   <div class="d-flex justify-content-around">
-                                    <button class="btn"><i class="fa fa-edit" style="color: rgba(242, 201, 76, 1);font-size: 20px;"></i></button>
+                                    <button class="btn" @click="detailRayon(index)"><i class="fa fa-edit" style="color: rgba(242, 201, 76, 1);font-size: 20px;"></i></button>
                                     <button class="btn"><i class="fa fa-trash" style="color: rgba(235, 87, 87, 1);font-size: 20px;"></i></button>
                                   </div>
                                 </td>
@@ -156,7 +156,7 @@
             <!-- end page content -->
     </div>
         <!-- end page-wrapper -->
-    <div class="modals2" id="modal2">
+    <div class="modals2" id="modal2" v-if="group_id === 1">
       <div class="overlay-modal"></div>
       <div class="row justify-content-center align-items-center h-100">
         <div class="col-md-7">
@@ -168,55 +168,143 @@
                   <img class="text-octomoda" src="../assets/images/octomodatext.png" alt="">
                 </div>
                 <div>
-                  <a href="#" @click="closemodal2">
+                  <a href="#" @click="closemodal">
                     <i class="fa fa-times"></i>
                   </a>
                 </div>
               </div>
               <div class="head-modal text-center">
-                <h1>Edit Rayon</h1>
+                <h1>Detail Asosiasi</h1>
               </div>
-              <div class="d-flex justify-content-between mt-4">
-                <div class="col-md-4">
-                    <p>No. Anggota :</p>
-                    <p class="font-weight-bold">0001</p>
+                <div class="row">
+                  <div class="col-md-4">
                     <p>Nama Asosiasi :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>Rayon :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>Nama Perusahaan :</p>
-                    <p class="font-weight-bold">0001</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].nama}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Nama Asosiasi (Inggris) :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].nama_ing}}</p>
+                  </div>
+                  <div class="col-md-4">
                     <p>Email :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>Alamat Kantor :</p>
-                    <p class="font-weight-bold">0001</p>
-                </div>
-                <div class="col-md-4">
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].email}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>No. HP :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].telp}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Fax :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].fax}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Alamat :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].alamat}}</p>
+                  </div>
+                  <div class="col-md-4">
                     <p>Provinsi :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>Kota :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>No. Telepon :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>Website :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>No. Akte Notaris :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>No. NPWP :</p>
-                    <p class="font-weight-bold">0001</p>
-                </div>
-                <div class="col-md-4">
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].provinsi.keterangan}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Kabupaten/Kota :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].kabupaten.keterangan}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Kode Pos</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].kode_pos}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>NIB :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].nib}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>NPWP :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].npwp}}</p>
+                  </div>
+                  <div class="col-md-4">
                     <p>No. Kemenkumham :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>No. NIK :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>Nama :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>Jabatan :</p>
-                    <p class="font-weight-bold">0001</p>
-                    <p>No. Handphone :</p>
-                    <p class="font-weight-bold">0001</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].no_kemenkumham}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>No. Akta Notaris :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].no_akta_notaris}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Website :</p>
+                    <p class="font-weight-bold">{{dataAsosiasi[indexke].website}}</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modals3" id="modal3" v-if="group_id === 2">
+      <div class="overlay-modal"></div>
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-7">
+          <div class="card">
+            <div class="card-body">
+              <div class="logo-exit">
+                <div class="octomoda-img">
+                  <img class="logo-octomoda" src="../assets/images/octomoda.png" alt="">
+                  <img class="text-octomoda" src="../assets/images/octomodatext.png" alt="">
                 </div>
+                <div>
+                  <a href="#" @click="closemodal">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="head-modal text-center">
+                <h1>Detail Rayon</h1>
+              </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <p>Nama Rayon :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].nama}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Rayon :</p>
+                    <p class="font-weight-bold" v-if="datarayon[indexke].rayon_id === 2">DPW / DPD</p>
+                    <p class="font-weight-bold" v-if="datarayon[indexke].rayon_id === 3">DPC / PKH</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Email :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].email}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>No. HP :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].no_hp}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Alamat :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].alamat}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>RT :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].rt}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>RW :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].rw}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Provinsi :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].provinsi.keterangan}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Kabupaten/Kota :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].kabupaten.keterangan}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Kode Pos</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].kode_pos}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p>Website :</p>
+                    <p class="font-weight-bold">{{datarayon[indexke].website}}</p>
+                  </div>
               </div>
             </div>
           </div>
@@ -235,7 +323,7 @@
                   <img class="text-octomoda" src="../assets/images/octomodatext.png" alt="">
                 </div>
                 <div>
-                  <a href="#" @click="closemodal">
+                  <a href="#" @click="closemodalTambah">
                     <i class="fa fa-times"></i>
                   </a>
                 </div>
@@ -368,6 +456,7 @@ import Navbar from '../components/StarterPage.vue';
 export default {
   data() {
     return {
+      indexke: 0,
       tambahrayon: {
         rayon_id: '',
         nama: '',
@@ -386,6 +475,8 @@ export default {
       nama: '',
       group_id: '',
       datarayon: null,
+      dataPerusahaan: null,
+      dataProfesional: null,
     };
   },
   components: {
@@ -408,17 +499,28 @@ export default {
     },
   },
   methods: {
+    viewAsosiasi(a) {
+      if (this.group_id === 1) {
+        document.getElementById('modal2').style.display = 'block';
+        this.indexke = a;
+      }
+    },
     detailRayon(a) {
-      console.log(a);
-      console.log(this.datarayon[a]);
+      if (this.group_id === 2) {
+        document.getElementById('modal3').style.display = 'block';
+        this.indexke = a;
+      }
     },
     closemodal() {
-      document.getElementById('modal').style.display = 'none';
+      if (this.group_id === 1) {
+        document.getElementById('modal2').style.display = 'none';
+      } else {
+        document.getElementById('modal3').style.display = 'none';
+      }
       // console.log(document.getElementById('modal'));
     },
-    closemodal2() {
-      document.getElementById('modal2').style.display = 'none';
-      // console.log(document.getElementById('modal'));
+    closemodalTambah() {
+      document.getElementById('modal').style.display = 'none';
     },
     tambahRayon() {
       axios.post(`${process.env.VUE_APP_API}data_rayon`, {
@@ -559,6 +661,20 @@ export default {
           console.log(err);
         });
     },
+    anggota() {
+      axios.get(`${process.env.VUE_APP_API}anggota`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          this.dataPerusahaan = res.data.anggota;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     user() {
       axios.get(`${process.env.VUE_APP_API}user`, {
         headers: {
@@ -593,6 +709,7 @@ export default {
     },
   },
   created() {
+    this.anggota();
     this.data();
     this.user();
     this.rayon();
@@ -641,7 +758,7 @@ export default {
   height: 100%;
   position: absolute;
   background: #ddd;
-  opacity: .4;
+  opacity: .6;
 }
 .modals .card{
   max-height: 550px;
@@ -693,7 +810,7 @@ export default {
   }
   .modals2{
     z-index: 9991;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
@@ -703,6 +820,20 @@ export default {
     display: none;
   }
   .modals2 p{
+    margin: 0 0 5px 0;
+  }
+  .modals3{
+    z-index: 9991;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    opacity: 1;
+    background: transparent;
+    display: none;
+  }
+  .modals3 p{
     margin: 0 0 5px 0;
   }
   .form-search select{

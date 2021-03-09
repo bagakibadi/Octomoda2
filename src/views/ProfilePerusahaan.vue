@@ -33,44 +33,51 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <div class="row">
-                            <label class="col-sm-2 col-form-label text-right" for="kategori">Kategori</label>
-                            <div class="col-sm-10">
-                              <select v-model="profile.kat_id" name="kategori" class="form-control" id="kategori">
-                                <option value="" selected> - Kategori - </option>
-                                <option :value="item.kode" v-for="(item,index) in kategori" :key="index">{{ item.keterangan }}</option>
+                            <label class="col-sm-2 col-form-label text-right" for="asosiasi">Asosiasi</label>
+                            <div class="col-sm-4">
+                              <select v-model="profile.asos_id" name="asosiasi" class="form-control" id="asosiasi">
+                                <option value="" selected disabled="disabled"> - Asosiasi - </option>
+                                <option :value="item.id" v-for="(item,index) in asosiasi" :key="index">{{ item.nama }}</option>
+                              </select>
+                            </div>
+                            <label class="col-sm-2 col-form-label text-right" for="rayon">Rayon</label>
+                            <div class="col-sm-4">
+                              <select v-model="profile.rayon_id" name="rayon" class="form-control" id="rayon">
+                                <option value="" selected> - Rayon - </option>
+                                <option :value="item.id" v-for="(item,index) in rayons" :key="index">{{ item.nama }}</option>
                               </select>
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="nama" class="col-sm-2 col-form-label text-right">Name</label>
+                            <label for="namaperusahaan" class="col-sm-2 col-form-label text-right">Nama Perusahaan</label>
                             <div class="col-sm-4">
-                              <input type="text" name="nama" id="nama" placeholder="Name" class="form-control" v-model="profile.nama">
+                              <input type="text" name="namaperusahaan" id="namaperusahaan" placeholder="Nama Perusahaan" class="form-control" v-model="profile.nama">
                             </div>
-                            <label for="namaing" class="col-sm-2 col-form-label text-right">Name Inggris</label>
+                            <label for="namaing" class="col-sm-2 col-form-label text-right">Name Perusahaan</label>
                             <div class="col-sm-4">
-                              <input type="text" name="namaing" id="namaing" placeholder="Nama Inggris" class="form-control" v-model="profile.nama_ing">
+                              <input type="text" name="namaing" id="namaing" placeholder="Nama Perusahaan (Inggris)" class="form-control" v-model="profile.nama_ing">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <label for="email" class="col-sm-2 col-form-label">Alamat Email</label>
                             <div class="col-sm-4">
                               <input type="email" name="email" id="email" v-model="profile.email" class="form-control" placeholder="Email">
                             </div>
                             <label for="telp" class="col-sm-2 col-form-label">No. Telp</label>
                             <div class="col-sm-4">
-                              <input type="number" name="telp" id="telp" v-model="profile.telp" class="form-control" placeholder="No. Telp">
+                              <input type="number" name="telp" id="telp" v-model="profile.no_wa" class="form-control" placeholder="No. WA Kantor">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="alamat" class="col-sm-2 col-form-label text-right">Address</label>
+                            <label for="alamat" class="col-sm-2 col-form-label text-right">Alamat Kantor</label>
                             <div class="col-sm-10">
-                              <textarea name="alamat" placeholder="Address" id="alamat" class="form-control" cols="30" rows="2" v-model="profile.alamat"></textarea>
+                              <textarea name="alamat" placeholder="Alamat Kantor" id="alamat" class="form-control" cols="30" rows="2" v-model="profile.alamat"></textarea>
                             </div>
                           </div>
                         </div>
@@ -116,9 +123,21 @@
                             <div class="col-sm-4">
                               <input type="text" name="kodepos" id="kodepos" v-model="profile.kode_pos" class="form-control" placeholder="Kode Pos">
                             </div>
-                            <label for="fax" class="col-sm-2 col-form-label">Fax</label>
+                            <label for="no_id" class="col-sm-2 col-form-label">No ID</label>
                             <div class="col-sm-4">
-                              <input type="number" name="fax" id="fax" v-model="profile.fax" class="form-control" placeholder="Fax">
+                              <input type="number" name="no_id" id="no_id" v-model="profile.no_id" class="form-control" placeholder="No ID">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="row">
+                            <label for="kbli" class="col-sm-2 col-form-label">KBLI</label>
+                            <div class="col-sm-4">
+                              <input type="number" name="kbli" id="kbli" placeholder="KBLI" v-model="profile.kbli" class="form-control">
+                            </div>
+                            <label for="domisili" class="col-sm-2 col-form-label">Domisili</label>
+                            <div class="col-sm-4">
+                              <input type="text" name="domisili" class="form-control" id="domisili" v-model="profile.domisili">
                             </div>
                           </div>
                         </div>
@@ -152,9 +171,17 @@
                             <div class="col-sm-4">
                               <input type="text" name="website" id="website" v-model="profile.website" class="form-control" placeholder="Website">
                             </div>
-                            <label for="no_id" class="col-sm-2 col-form-label">No ID</label>
+                            <label for="siup" class="col-sm-2 col-form-label">SIUP</label>
                             <div class="col-sm-4">
-                              <input type="number" name="no_id" id="no_id" v-model="profile.no_id" class="form-control" placeholder="No ID">
+                              <input type="text" name="siup" id="siup" v-model="profile.siup" class="form-control" placeholder="SIUP">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="row">
+                            <label for="tdp" class="col-sm-2 col-form-label">TDP</label>
+                            <div class="col-sm-4">
+                              <input type="text" name="tdp" id="tdp" v-model="profile.tdp" class="form-control" placeholder="TDP">
                             </div>
                           </div>
                         </div>
@@ -192,21 +219,25 @@ export default {
   },
   methods: {
     saveprofile() {
-      axios.post(`${process.env.VUE_APP_API}profile/asosiasi`, {
+      axios.post(`${process.env.VUE_APP_API}profile`, {
         nama: this.profile.nama,
         nama_ing: this.profile.nama_ing,
-        kat_id: this.profile.kat_id,
+        rayon_id: this.profile.rayon_id,
+        asos_id: this.profile.asos_id,
         alamat: this.profile.alamat,
         prov_id: this.profile.prov_id,
         kab_id: this.profile.kab_id,
         kec_id: this.profile.kec_id,
         kel_id: this.profile.kel_id,
         kode_pos: this.profile.kode_pos,
-        telp: this.profile.telp,
-        fax: this.profile.fax,
+        no_wa: this.profile.no_wa,
         email: this.profile.email,
         website: this.profile.website,
         nib: this.profile.nib,
+        kbli: this.profile.kbli,
+        domisili: this.profile.domisili,
+        siup: this.profile.siup,
+        tdp: this.profile.tdp,
         npwp: this.profile.npwp,
         no_akta_notaris: this.profile.no_akta_notaris,
         no_kemenkumham: this.profile.no_kemenkumham,
@@ -243,7 +274,11 @@ export default {
     ...mapState(['kabupaten']),
     ...mapState(['kecamatan']),
     ...mapState(['kelurahan']),
-    // ...mapState(['profile']),
+    ...mapState(['asosiasi']),
+    ...mapState(['rayons']),
+    asos_id() {
+      return this.profile.asos_id;
+    },
     prov_id() {
       return this.profile.prov_id;
     },
@@ -263,6 +298,10 @@ export default {
       url: 'daerah/provinsi',
       mutation: 'GET_PROVINSI',
     });
+    this.$store.dispatch('getApi', {
+      url: 'asosiasi',
+      mutation: 'GET_ASOSIASI',
+    });
   },
   beforeCreate() {
     if (localStorage.token) {
@@ -274,7 +313,7 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.data.user.group_id === 3) {
-            this.$router.push('/profile-perusahaan');
+            // this.$router.push('/profile-perusahaan');
           } else if (res.data.user.group_id === 4) {
             this.$router.push('/profile-profesional');
           } else if (res.data.user.group_id === 5) {
@@ -332,6 +371,19 @@ export default {
         this.$store.dispatch('getApi', {
           url: `daerah/kelurahan/${val}`,
           mutation: 'GET_KELURAHAN',
+        });
+      }
+    },
+    asos_id(val) {
+      if (val) {
+        this.$store.dispatch('getApi', {
+          url: `data_rayon?asos_id=${val}`,
+          mutation: 'GET_RAYONSS',
+          headers: {
+            headers: {
+              Authorization: `Bearer ${localStorage.token}`,
+            },
+          },
         });
       }
     },

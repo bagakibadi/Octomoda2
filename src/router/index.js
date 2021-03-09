@@ -5,8 +5,11 @@ import Login from '../views/Login.vue';
 import Logout from '../views/Logout.vue';
 import Registrasi from '../views/Registrasi.vue';
 import Profile from '../views/Profile.vue';
+import ProfilePerusahaan from '../views/ProfilePerusahaan.vue';
 import Keanggotaan from '../views/Keanggotaan.vue';
 import KeanggotaanApproval from '../views/KeanggotaanApproval.vue';
+import Profesional from '../views/AnggotaProfesional.vue';
+import Perusahaan from '../views/AnggotaPerusahaan.vue';
 
 Vue.use(VueRouter);
 
@@ -35,6 +38,21 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+  },
+  {
+    path: '/profile-perusahaan',
+    name: 'Profile Perusahaan',
+    component: ProfilePerusahaan,
+  },
+  {
+    path: '/anggota',
+    name: 'Perusahaan123',
+    component: Perusahaan,
+  },
+  {
+    path: '/profesional',
+    name: 'Profesional',
+    component: Profesional,
   },
   {
     path: '/keanggotaan',

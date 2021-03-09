@@ -1,6 +1,11 @@
 <template>
   <!-- eslint-disable max-len -->
   <div class="account-body accountbg" style="min-height: 100vh;padding: 100px 0 50px 0">
+    <div class="loading" id="loading">
+      <div class="overlay-modal"></div>
+      <i class="fa fa-spinner fa-spin"></i>
+      <h1>Loading</h1>
+    </div>
     <!-- Log In page -->
     <div class="container">
         <div class="row">
@@ -9,9 +14,9 @@
                     <div class="card auth-card shadow-lg">
                         <div class="card-body">
                             <div class="px-3">
-                                <div class="auth-logo-box">
+                                <div class="auth-logo-box" style="top: -50px">
                                     <router-link to="/" class="logo logo-admin">
-                                      <img src="../assets/images/octomoda.png" height="55" alt="logo" class="auth-logo">
+                                      <img src="../assets/images/octomoda.png" height="100" alt="logo" class="auth-logo">
                                     </router-link>
                                 </div><!--end auth-logo-box-->
                                 <div class="text-center auth-logo-text">
@@ -95,8 +100,9 @@ export default {
         username: this.login.email, password: this.login.password,
       })
         .then((res) => {
-          console.log(res);
+          document.getElementById('loading').style.display = 'flex';
           if (!res.data.success) {
+            document.getElementById('loading').style.display = 'none';
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
@@ -105,14 +111,13 @@ export default {
           } else {
             localStorage.token = res.data.token;
             if (res.data.group_id === 1) {
+              document.getElementById('loading').style.display = 'none';
               Swal.fire(
                 'Good job!',
                 'Login Berhasil!',
                 'success',
               );
-              setTimeout(() => {
-                this.$router.go('/');
-              }, 500);
+              this.$router.go('/');
             } else if (res.data.have_profile === 0) {
               Swal.fire(
                 'Good job!',

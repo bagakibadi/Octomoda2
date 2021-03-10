@@ -49,36 +49,56 @@
                     <h4 class="page-title">Daftar Perusahaan</h4>
                     <!-- <button data-toggle="modal" @click="modaltambah" class="btn btn-secondary">+ Tambah Rayon</button> -->
                   </div>
-                  <table id="datatable2" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <!-- <th>Rayon</th> -->
-                        <th>Nama Perusahaan</th>
-                        <th>Domisili</th>
-                        <th>Email</th>
-                        <th>Detail</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody v-for="(data,index) in dataPerusahaan.anggota.perusahaan" :key="index.id">
-                      <tr>
-                        <td style="width: 5%;text-align: center;" >{{data.id}}</td>
-                        <td>{{data.nama}}</td>
-                        <td>{{data.domisili}}</td>
-                        <td>{{data.email}}</td>
-                        <td>
-                          <button @click="detailPerusahaan(index)" class="btn btn-warning">Detail</button>
-                        </td>
-                        <td style="width: auto;">
-                          <div class="d-flex justify-content-around">
-                            <button class="btn btn-primary" @click="approve(data.id)" v-if="data.approved === 0">Approve</button>
-                            <button class="btn btn-danger" v-else>Unapprove</button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div style="overflow-x: auto;" v-if="dataPerusahaan !== null">
+                    <table id="datatable2" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <!-- <th>Rayon</th> -->
+                          <th>Nama Perusahaan</th>
+                          <th>Domisili</th>
+                          <th>Email</th>
+                          <th>Detail</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody v-for="(data,index) in dataPerusahaan.anggota.perusahaan" :key="index.id">
+                        <tr>
+                          <td style="width: 5%;text-align: center;" >{{data.id}}</td>
+                          <td>{{data.nama}}</td>
+                          <td>{{data.domisili}}</td>
+                          <td>{{data.email}}</td>
+                          <td>
+                            <button @click="detailPerusahaan(index)" class="btn btn-warning">Detail</button>
+                          </td>
+                          <td style="width: auto;">
+                            <div class="d-flex justify-content-around">
+                              <button class="btn btn-primary" @click="approve(data.id)" v-if="data.approved === 0">Approve</button>
+                              <button class="btn btn-danger" @click="unapprove(data.id)" v-else>Unapprove</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div v-else>
+                    <table id="datatable2" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <!-- <th>Rayon</th> -->
+                          <th>Nama Perusahaan</th>
+                          <th>Domisili</th>
+                          <th>Email</th>
+                          <th>Detail</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -193,6 +213,37 @@ export default {
       setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
       }, 2000);
+    },
+    unapprove(e) {
+      document.getElementById('loading').style.display = 'flex';
+      axios.get(`${process.env.VUE_APP_API}unapprove/perusahaan?id=${e}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+        .then((res) => {
+          document.getElementById('loading').style.display = 'none';
+          if (res.data.success) {
+            Swal.fire(
+              'Good job!',
+              res.data.msg,
+              'success',
+            ).then((rest) => {
+              if (rest.isConfirmed) {
+                this.$router.go();
+              }
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: res.data.msg,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     approve(e) {
       document.getElementById('loading').style.display = 'flex';

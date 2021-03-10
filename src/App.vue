@@ -22,4 +22,7 @@
   .loading h1{
     position: relative;
   }
+  .modals .h-100, .modals2 .h-100, .modals3 .h-100 {
+    overflow-x: auto;
+  }
 </style>

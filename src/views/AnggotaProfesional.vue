@@ -29,7 +29,7 @@
                       </div>
                     </div>
                     <div class="col-md-3">
-                      <button class="btn btn-primary" @click="loading"><i class="fa fa-search"></i> Tampilkan Data</button>
+                      <button class="btn btn-primary" ><i class="fa fa-search"></i> Tampilkan Data</button>
                     </div>
                   </div>
                 </div>
@@ -44,36 +44,74 @@
                     <h4 class="page-title">Daftar Perusahaan</h4>
                     <!-- <button data-toggle="modal" @click="modaltambah" class="btn btn-secondary">+ Tambah Rayon</button> -->
                   </div>
-                  <table id="datatable2" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <!-- <th>Rayon</th> -->
-                        <th>Nama Perusahaan</th>
-                        <th>Domisili</th>
-                        <th>Email</th>
-                        <th>Detail</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody v-for="(data,index) in dataPerusahaan.anggota.perusahaan" :key="index.id">
-                      <tr>
-                        <td style="width: 5%;text-align: center;" >{{data.id}}</td>
-                        <td>{{data.nama}}</td>
-                        <td>{{data.domisili}}</td>
-                        <td>{{data.email}}</td>
-                        <td>
-                          <button @click="detailPerusahaan(index)" class="btn btn-warning">Detail</button>
-                        </td>
-                        <td style="width: auto;">
-                          <div class="d-flex justify-content-around">
-                            <button class="btn btn-primary" @click="approve(data.id)" v-if="data.approved === 0">Approve</button>
-                            <button class="btn btn-danger" v-else>Unapprove</button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div style="overflow-x: auto;" v-if="dataPerusahaan !== null">
+                    <table id="datatable2" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <!-- <th>Rayon</th> -->
+                          <th>Nama Perusahaan</th>
+                          <th>Domisili</th>
+                          <th>Email</th>
+                          <th>Detail</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <!-- <div v-if="dataPerusahaan !== null"> -->
+                      <tbody v-for="(data,index) in dataPerusahaan.anggota.profesional" :key="index.id">
+                        <tr>
+                          <td style="width: 5%;text-align: center;" >{{data.id}}</td>
+                          <td>{{data.nama}}</td>
+                          <td>{{data.domisili}}</td>
+                          <td>{{data.email}}</td>
+                          <td>
+                            <button @click="detailPerusahaan(index)" class="btn btn-warning">Detail</button>
+                          </td>
+                          <td style="width: auto;">
+                            <div class="d-flex justify-content-around">
+                              <button class="btn btn-primary" @click="approve(data.id)" v-if="data.approved === 0">Approve</button>
+                              <button class="btn btn-danger" @click="unapprove(data.id)" v-else>Unapprove</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <!-- </div> -->
+                    </table>
+                  </div>
+                  <div v-else>
+                    <table id="datatable2" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <!-- <th>Rayon</th> -->
+                          <th>Nama Perusahaan</th>
+                          <th>Domisili</th>
+                          <th>Email</th>
+                          <th>Detail</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <!-- <div v-if="dataPerusahaan !== null"> -->
+                      <tbody>
+                        <!-- <tr>
+                          <td style="width: 5%;text-align: center;" >{{data.id}}</td>
+                          <td>{{data.nama}}</td>
+                          <td>{{data.domisili}}</td>
+                          <td>{{data.email}}</td>
+                          <td>
+                            <button @click="detailPerusahaan(index)" class="btn btn-warning">Detail</button>
+                          </td>
+                          <td style="width: auto;">
+                            <div class="d-flex justify-content-around">
+                              <button class="btn btn-primary" @click="approve(data.id)" v-if="data.approved === 0">Approve</button>
+                              <button class="btn btn-danger" @click="unapprove(data.id)" v-else>Unapprove</button>
+                            </div>
+                          </td>
+                        </tr> -->
+                      </tbody>
+                      <!-- </div> -->
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -101,64 +139,64 @@
               <div class="head-modal text-center">
                 <h1>Detail Asosiasi</h1>
               </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-md-4">
                     <p>Nama :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].nama}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].nama}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>Nama Inggris :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].nama_ing}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].nama_ing}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>Email :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].email}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].email}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>No ID :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].no_id}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].no_id}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>No. HP :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].no_wa}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].no_wa}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>Alamat :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].alamat}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].alamat}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>Provinsi :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].provinsi.keterangan}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].provinsi.keterangan}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>Kabupaten/Kota :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].kabupaten.keterangan}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].kabupaten.keterangan}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>Kode Pos</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].kode_pos}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].kode_pos}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>NIB :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].nib}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].nib}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>NPWP :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].npwp}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].npwp}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>No. Kemenkumham :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].no_kemenkumham}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].no_kemenkumham}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>No. Akta Notaris :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].no_akta_notaris}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].no_akta_notaris}}</p>
                   </div>
                   <div class="col-md-4">
                     <p>Website :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.perusahaan[indexke].website}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].website}}</p>
                   </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -169,6 +207,7 @@
 
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import Navbar from '../components/StarterPage.vue';
 
 export default {
@@ -182,14 +221,63 @@ export default {
     };
   },
   methods: {
-    approve(e) {
-      axios.get(`${process.env.VUE_APP_API}approve/perusahaan?id=${e}`, {
+    unapprove(e) {
+      document.getElementById('loading').style.display = 'flex';
+      axios.get(`${process.env.VUE_APP_API}unapprove/anggota?id=${e}`, {
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },
       })
         .then((res) => {
-          console.log(res);
+          document.getElementById('loading').style.display = 'none';
+          if (res.data.success) {
+            Swal.fire(
+              'Good job!',
+              res.data.msg,
+              'success',
+            ).then((rest) => {
+              if (rest.isConfirmed) {
+                this.$router.go();
+              }
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: res.data.msg,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    approve(e) {
+      axios.get(`${process.env.VUE_APP_API}approve/anggota?id=${e}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+        .then((res) => {
+          document.getElementById('loading').style.display = 'none';
+          if (res.data.success) {
+            Swal.fire(
+              'Good job!',
+              res.data.msg,
+              'success',
+            ).then((rest) => {
+              if (rest.isConfirmed) {
+                this.$router.go();
+              }
+              // console.log(rest);
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: res.data.msg,
+            });
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -205,27 +293,44 @@ export default {
     closemodal() {
       document.getElementById('modal2').style.display = 'none';
     },
-    anggota() {
-      axios.get(`${process.env.VUE_APP_API}anggota`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      })
-        .then((res) => {
-          console.log(res);
-          if (res.data.success) {
-            this.dataPerusahaan = res.data;
-          } else {
-            this.$router.push('/logout');
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+    // anggota() {
+    //   axios.get(`${process.env.VUE_APP_API}anggota`, {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.token}`,
+    //     },
+    //   })
+    //     .then((res) => {
+    //       console.log(res);
+    //       if (res.data.success) {
+    //         this.dataPerusahaan = res.data;
+    //       } else {
+    //         this.$router.push('/logout');
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
   },
-  created() {
-    this.anggota();
+  beforeCreate() {
+    // anggota() {
+    axios.get(`${process.env.VUE_APP_API}anggota`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data.success) {
+          this.dataPerusahaan = res.data;
+        } else {
+          this.$router.push('/logout');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // };
   },
 };
 </script>

@@ -32,27 +32,27 @@
             <ul class="metismenu left-sidenav-menu slimscroll">
                 <li class="menu-label">Main</li>
                 <li class="leftbar-menu-item">
-                    <router-link to="/" class="menu-link" v-if="group_id === 1 || group_id === 2">
+                    <a href="/" class="menu-link" v-if="group_id === 1 || group_id === 2">
                         <monitor-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></monitor-icon>
                         <span>Dashboard</span>
                         <span class="menu-arrow">
                             <i class="fa fa-angle-right"></i>
                         </span>
-                    </router-link>
-                    <router-link to="/perusahaan" class="menu-link" v-if="group_id === 5">
+                    </a>
+                    <a href="/anggota" class="menu-link" v-if="group_id === 5 || group_id === 2">
                         <users-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></users-icon>
                         <span>Perusahaan</span>
                         <span class="menu-arrow">
                             <i class="fa fa-angle-right"></i>
                         </span>
-                    </router-link>
-                    <router-link to="/profesional" class="menu-link" v-if="group_id === 5">
+                    </a>
+                    <a href="/profesional" class="menu-link" v-if="group_id === 5 || group_id === 2">
                         <users-icon size="2x" class="align-self-center vertical-menu-icon icon-dual-vertical"></users-icon>
                         <span>Profesional</span>
                         <span class="menu-arrow">
                             <i class="fa fa-angle-right"></i>
                         </span>
-                    </router-link>
+                    </a>
                 </li>
             </ul>
         </div>

@@ -2,159 +2,162 @@
   <!-- eslint-disable max-len -->
   <div>
     <Navbar/>
-          <div class="page-wrapper">
+      <div class="page-wrapper">
 
-            <!-- Page Content-->
-            <div class="page-content-tab">
+        <!-- Page Content-->
+        <div class="page-content-tab">
 
-                <div class="container-fluid" v-if="group_id === 1">
-                    <!-- Page-Title -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="page-title-box">
-                                <div class="float-right">
-                                    <ol class="breadcrumb">
-                                        <!-- <li class="breadcrumb-item"><a href="javascript:void(0);">Metrica</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">UI Kit</a></li> -->
-                                        <li class="breadcrumb-item active">Dashboard</li>
-                                    </ol>
-                                </div>
-                                <h4 class="page-title">Asosiasi</h4>
-                            </div><!--end page-title-box-->
-                        </div><!--end col-->
-                    </div>
-                    <!-- end page title end breadcrumb -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body" style="overflow-x: auto">
-
-                                    <h4 class="mt-0 header-title">List Asosiasi</h4>
-                                    <!-- <p class="text-muted mb-3">DataTables has most features enabled by
-                                        default, so all you need to do to use it with your own tables is to call
-                                        the construction function: <code>$().DataTable();</code>.
-                                    </p> -->
-
-                                    <table id="datatable" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
-                                        <tr>
-                                            <th>Asosiasi</th>
-                                            <th>Email</th>
-                                            <th>No. Telephone</th>
-                                            <th>Alamat</th>
-                                            <!-- <th></th> -->
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody id="asosiasitable" v-for="(data,index) in dataAsosiasi" :key="index.id">
-                                          <tr>
-                                            <td>
-                                              <a href="#" @click="viewAsosiasi(index)">
-                                                <div class="d-flex logoasosiasi">
-                                                  <img :src="data.logo_asosiasi" alt="">
-                                                  <p>
-                                                    {{data.nama}}
-                                                  </p>
-                                                </div>
-                                              </a>
-                                            </td>
-                                            <td>{{data.email}}</td>
-                                            <td>{{data.telp}}</td>
-                                            <td>{{data.alamat}}</td>
-                                            <td>
-                                              <button class="btn btn-danger" v-if="data.approved === 1" @click="unapprove(data.id, data.nama)">Batalkan</button>
-                                              <button class="btn btn-primary" @click="konfirm(data.id, data.nama)" v-else>Konfirmasi</button>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
+            <div class="container-fluid" v-if="group_id === 1">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-right">
+                                <ol class="breadcrumb">
+                                    <!-- <li class="breadcrumb-item"><a href="javascript:void(0);">Metrica</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">UI Kit</a></li> -->
+                                    <li class="breadcrumb-item active">Dashboard</li>
+                                </ol>
                             </div>
-                        </div> <!-- end col -->
-                    </div> <!-- end row -->
+                            <h4 class="page-title">Asosiasi</h4>
+                        </div><!--end page-title-box-->
+                    </div><!--end col-->
+                </div>
+                <!-- end page title end breadcrumb -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body" style="overflow-x: auto">
 
-                </div><!-- container -->
-                <div class="container-fluid" v-if="group_id === 2">
-                  <div class="row">
-                    <div class="col-sm-12 my-3">
-                      <div class="card">
-                        <div class="card-body">
-                          <h3 class="page-title mb-4">Data Rayon</h3>
-                          <div class="row">
-                            <div class="col-md-3">
-                              <div class="form-search">
-                                <select name="wilayah" class="form-control" id="wilayah">
-                                  <option value="" selected>Wilayah</option>
-                                  <option value="">Wilayah</option>
-                                  <option value="">Wilayah</option>
-                                </select>
+                                <h4 class="mt-0 header-title">List Asosiasi</h4>
+                                <!-- <p class="text-muted mb-3">DataTables has most features enabled by
+                                    default, so all you need to do to use it with your own tables is to call
+                                    the construction function: <code>$().DataTable();</code>.
+                                </p> -->
+                              <div style="overflow-x: auto;">
+                                <table id="datatable" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                    <tr>
+                                        <th>Asosiasi</th>
+                                        <th>Email</th>
+                                        <th>No. Telephone</th>
+                                        <th>Alamat</th>
+                                        <!-- <th></th> -->
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody id="asosiasitable" v-for="(data,index) in dataAsosiasi" :key="index.id">
+                                      <tr>
+                                        <td>
+                                          <a href="#" @click="viewAsosiasi(index)">
+                                            <div class="d-flex logoasosiasi">
+                                              <img :src="data.logo_asosiasi" alt="">
+                                              <p>
+                                                {{data.nama}}
+                                              </p>
+                                            </div>
+                                          </a>
+                                        </td>
+                                        <td>{{data.email}}</td>
+                                        <td>{{data.telp}}</td>
+                                        <td>{{data.alamat}}</td>
+                                        <td>
+                                          <button class="btn btn-danger" v-if="data.approved === 1" @click="unapprove(data.id, data.nama)">Batalkan</button>
+                                          <button class="btn btn-primary" @click="konfirm(data.id, data.nama)" v-else>Konfirmasi</button>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                </table>
                               </div>
+
                             </div>
-                            <div class="col-md-3">
-                              <div class="form-search">
-                                <select name="rayon" id="rayon" class="form-control">
-                                  <option value="" selected>Rayon</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <button class="btn btn-primary"><i class="fa fa-search"></i> Tampilkan Data</button>
-                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+
+            </div><!-- container -->
+            <div class="container-fluid" v-if="group_id === 2">
+              <div class="row">
+                <div class="col-sm-12 my-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="page-title mb-4">Data Rayon</h3>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-search">
+                            <select name="wilayah" class="form-control" id="wilayah">
+                              <option value="" selected>Wilayah</option>
+                              <option value="">Wilayah</option>
+                              <option value="">Wilayah</option>
+                            </select>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="card">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between mb-4">
-                            <h4 class="page-title">Daftar Rayon</h4>
-                            <button data-toggle="modal" @click="modaltambah" class="btn btn-secondary">+ Tambah Rayon</button>
+                        <div class="col-md-3">
+                          <div class="form-search">
+                            <select name="rayon" id="rayon" class="form-control">
+                              <option value="" selected>Rayon</option>
+                            </select>
                           </div>
-                          <table id="datatable" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                              <tr>
-                                <th>No</th>
-                                <th>Rayon</th>
-                                <th>Nama Rayon</th>
-                                <th>Wilayah</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th>Actions</th>
-                              </tr>
-                            </thead>
-                            <tbody v-for="(data,index) in datarayon" :key="index.id">
-                              <tr>
-                                <td style="width: 5%;text-align: center;" >{{data.id}}</td>
-                                <td>
-                                  <p v-if="data.rayon_id === 2">DPW / DPD</p>
-                                  <p v-else>DPC / PKH</p>
-                                </td>
-                                <td>{{data.nama}}</td>
-                                <td>{{data.provinsi.keterangan}}</td>
-                                <td>{{data.email}}</td>
-                                <td>{{data.password}}</td>
-                                <td style="width: 10%;">
-                                  <div class="d-flex justify-content-around">
-                                    <button class="btn" @click="detailRayon(index)"><i class="fa fa-edit" style="color: rgba(242, 201, 76, 1);font-size: 20px;"></i></button>
-                                    <button class="btn"><i class="fa fa-trash" style="color: rgba(235, 87, 87, 1);font-size: 20px;"></i></button>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                        </div>
+                        <div class="col-md-3">
+                          <button class="btn btn-primary"><i class="fa fa-search"></i> Tampilkan Data</button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between mb-4">
+                        <h4 class="page-title">Daftar Rayon</h4>
+                        <button data-toggle="modal" @click="modaltambah" class="btn btn-secondary">+ Tambah Rayon</button>
+                      </div>
+                      <div style="overflow-x:auto">
+                        <table id="datatable" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                          <thead>
+                            <tr>
+                              <th>No</th>
+                              <th>Rayon</th>
+                              <th>Nama Rayon</th>
+                              <th>Wilayah</th>
+                              <th>Email</th>
+                              <th>Password</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody v-for="(data,index) in datarayon" :key="index.id">
+                            <tr>
+                              <td style="width: 5%;text-align: center;" >{{data.id}}</td>
+                              <td>
+                                <p v-if="data.rayon_id === 2">DPW / DPD</p>
+                                <p v-else>DPC / PKH</p>
+                              </td>
+                              <td>{{data.nama}}</td>
+                              <td>{{data.provinsi.keterangan}}</td>
+                              <td>{{data.email}}</td>
+                              <td>{{data.password}}</td>
+                              <td style="width: 10%;">
+                                <div class="d-flex justify-content-around">
+                                  <button class="btn" @click="detailRayon(index)"><i class="fa fa-edit" style="color: rgba(242, 201, 76, 1);font-size: 20px;"></i></button>
+                                  <button class="btn"><i class="fa fa-trash" style="color: rgba(235, 87, 87, 1);font-size: 20px;"></i></button>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <!-- end page content -->
-    </div>
+        </div>
+        <!-- end page content -->
+      </div>
         <!-- end page-wrapper -->
     <div class="modals2" id="modal2" v-if="group_id === 1">
       <div class="overlay-modal"></div>
@@ -311,9 +314,9 @@
         </div>
       </div>
     </div>
-    <div id="modal" class="modals">
+    <div id="modal" class="modals" v-if="group_id === 2">
       <div class="overlay-modal"></div>
-      <div class="row justify-content-center align-items-center h-100">
+      <div class="row justify-content-center align-items-center h-100 m-0">
         <div class="col-md-7">
           <div class="card">
             <div class="card-body">
@@ -551,7 +554,6 @@ export default {
             });
             console.log('err');
           } else {
-            // console.log('bnr');
             Swal.fire(
               'Success',
               res.data.msg,
@@ -709,10 +711,10 @@ export default {
     },
   },
   created() {
-    this.anggota();
     this.data();
-    this.user();
     this.rayon();
+    this.anggota();
+    this.user();
     this.$store.dispatch('getApi', {
       url: 'daerah/provinsi',
       mutation: 'GET_PROVINSI',

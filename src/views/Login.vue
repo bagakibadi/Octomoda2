@@ -54,7 +54,7 @@
                                             </div>
                                         </div><!--end col-->
                                         <div class="col-sm-6 text-right">
-                                          <router-link to="/forget-password" class="text-muted font-13"><i class="fa fa-lock"></i> Forgot password?</router-link>
+                                          <router-link to="#" class="text-muted font-13"><i class="fa fa-lock"></i> Forgot password?</router-link>
                                         </div><!--end col-->
                                     </div><!--end form-group-->
 

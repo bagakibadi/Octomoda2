@@ -1,5 +1,11 @@
 <template>
   <!-- eslint-disable max-len -->
+<div>
+  <div class="loading" id="loading">
+    <div class="overlay-modal"></div>
+    <i class="fa fa-spinner fa-spin"></i>
+    <h1>Loading</h1>
+  </div>
   <div class="account-body accountbg" style="padding: 100px 0 50px 0;height: auto;min-height: 100vh">
       <!-- Log In page -->
       <div class="container">
@@ -29,7 +35,7 @@
                                               </span>
                                               <select name="jenis" id="jenis" required class="form-control" v-model="regis.jenis">
                                                 <option value="" selected>- Pilih Jenis -</option>
-                                                <option value="1">Admin</option>
+                                                <!-- <option value="1">Admin</option> -->
                                                 <option value="2">Asosiasi</option>
                                                 <option value="3">Perusahaan</option>
                                                 <option value="4">Profesional</option>
@@ -38,12 +44,12 @@
                                           </div>
                                       </div><!--end form-group-->
                                       <div class="form-group">
-                                          <label for="username">Username</label>
+                                          <label for="username">Nama</label>
                                           <div class="input-group mb-3">
                                               <span class="auth-form-icon">
                                                   <i class="fa fa-user"></i>
                                               </span>
-                                              <input type="text" class="form-control" name="username" id="username" v-model="regis.username" required placeholder="Enter username">
+                                              <input type="text" class="form-control" name="username" id="username" v-model="regis.username" required placeholder="Enter Nama">
                                           </div>
                                       </div><!--end form-group-->
 
@@ -126,6 +132,7 @@
       </div><!--end container-->
       <!-- End Log In page -->
   </div>
+</div>
 </template>
 
 <script>
@@ -150,6 +157,7 @@ export default {
   },
   methods: {
     registrasi() {
+      document.getElementById('loading').style.display = 'flex';
       axios.post(`${process.env.VUE_APP_API}register`, {
         name: this.regis.username,
         no_hp: this.regis.no,
@@ -158,6 +166,7 @@ export default {
         group_id: this.regis.jenis,
       })
         .then((res) => {
+          document.getElementById('loading').style.display = 'none';
           console.log(res);
           if (!res.data.success) {
             Swal.fire({
@@ -189,6 +198,7 @@ export default {
       }
     },
     verifikasi(e) {
+      document.getElementById('loading').style.display = 'flex';
       const otp = [this.otp1, this.otp2, this.otp3, this.otp4, this.otp5];
       let str = '';
       for (let i = 0; i < otp.length; i += 1) {
@@ -205,6 +215,7 @@ export default {
         },
       })
         .then((res) => {
+          document.getElementById('loading').style.display = 'none';
           console.log(res);
           if (!res.data.success) {
             Swal.fire({

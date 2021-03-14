@@ -14,6 +14,11 @@
                   <div class="row">
                     <div class="col-md-3">
                       <div class="form-search">
+                        <input type="text" placeholder="Search" class="form-control" name="" id="">
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                      <div class="form-search">
                         <select name="wilayah" class="form-control" id="wilayah">
                           <option value="" selected>Wilayah</option>
                           <option value="">Wilayah</option>
@@ -27,7 +32,7 @@
                           <option value="" selected>Rayon</option>
                         </select>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-3">
                       <button class="btn btn-primary" ><i class="fa fa-search"></i> Tampilkan Data</button>
                     </div>
@@ -139,7 +144,7 @@
               <div class="head-modal text-center">
                 <h1>Detail Asosiasi</h1>
               </div>
-                <!-- <div class="row">
+                <div class="row" v-if="dataPerusahaan !== null && dataPerusahaan.anggota.profesional">
                   <div class="col-md-4">
                     <p>Nama :</p>
                     <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].nama}}</p>
@@ -196,7 +201,7 @@
                     <p>Website :</p>
                     <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].website}}</p>
                   </div>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>

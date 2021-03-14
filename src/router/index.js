@@ -10,6 +10,9 @@ import Keanggotaan from '../views/Keanggotaan.vue';
 import KeanggotaanApproval from '../views/KeanggotaanApproval.vue';
 import Profesional from '../views/AnggotaProfesional.vue';
 import Perusahaan from '../views/AnggotaPerusahaan.vue';
+import Supply from '../views/SupplyChain.vue';
+import ProfileProfesional from '../views/ProfileProfesional.vue';
+import Darat from '../views/Udara.vue';
 
 Vue.use(VueRouter);
 
@@ -18,6 +21,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Dashboard,
+  },
+  {
+    path: '/supply',
+    name: 'Supply',
+    component: Supply,
+  },
+  {
+    path: '/darat',
+    name: 'Darat',
+    component: Darat,
   },
   {
     path: '/login',
@@ -43,6 +56,11 @@ const routes = [
     path: '/profile-perusahaan',
     name: 'Profile Perusahaan',
     component: ProfilePerusahaan,
+  },
+  {
+    path: '/profile-profesional',
+    name: 'Profile Profesional',
+    component: ProfileProfesional,
   },
   {
     path: '/anggota',

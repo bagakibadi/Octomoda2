@@ -10,29 +10,13 @@
             <div class="col-sm-12 my-3">
               <div class="card">
                 <div class="card-body">
-                  <h3 class="page-title mb-4">Data Perusahaan</h3>
+                  <h3 class="page-title mb-4">Data professional</h3>
                   <div class="row">
                     <div class="col-md-3">
                       <div class="form-search">
                         <input type="text" placeholder="Search" class="form-control" name="" id="">
                       </div>
                     </div>
-                    <!-- <div class="col-md-3">
-                      <div class="form-search">
-                        <select name="wilayah" class="form-control" id="wilayah">
-                          <option value="" selected>Wilayah</option>
-                          <option value="">Wilayah</option>
-                          <option value="">Wilayah</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-search">
-                        <select name="rayon" id="rayon" class="form-control">
-                          <option value="" selected>Rayon</option>
-                        </select>
-                      </div>
-                    </div> -->
                     <div class="col-md-3">
                       <button class="btn btn-primary" ><i class="fa fa-search"></i> Tampilkan Data</button>
                     </div>
@@ -54,21 +38,20 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <!-- <th>Rayon</th> -->
+                          <th>Nama Professional</th>
                           <th>Nama Perusahaan</th>
-                          <th>Domisili</th>
-                          <th>Email</th>
+                          <th>Email Perusahaan</th>
                           <th>Detail</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
                       <!-- <div v-if="dataPerusahaan !== null"> -->
-                      <tbody v-for="(data,index) in dataPerusahaan.anggota.profesional" :key="index.id">
+                      <tbody v-for="(data,index) in dataPerusahaan.anggota.professional" :key="index.id">
                         <tr>
                           <td style="width: 5%;text-align: center;" >{{data.id}}</td>
                           <td>{{data.nama}}</td>
-                          <td>{{data.domisili}}</td>
-                          <td>{{data.email}}</td>
+                          <td>{{data.nama_perusahaan}}</td>
+                          <td>{{data.email_perusahaan}}</td>
                           <td>
                             <button @click="detailPerusahaan(index)" class="btn btn-warning">Detail</button>
                           </td>
@@ -144,62 +127,70 @@
               <div class="head-modal text-center">
                 <h1>Detail Asosiasi</h1>
               </div>
-                <div class="row" v-if="dataPerusahaan !== null && dataPerusahaan.anggota.profesional">
-                  <div class="col-md-4">
+                <div class="row" v-if="dataPerusahaan !== null && dataPerusahaan.anggota.professional">
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].nama">
                     <p>Nama :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].nama}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].nama}}</p>
                   </div>
-                  <div class="col-md-4">
-                    <p>Nama Inggris :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].nama_ing}}</p>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].tempat_lahir">
+                    <p>Tempat Lahir :</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].tempat_lahir}}</p>
                   </div>
-                  <div class="col-md-4">
-                    <p>Email :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].email}}</p>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].tanggal_lahir">
+                    <p>Tanggal Lahir :</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].tanggal_lahir}}</p>
                   </div>
-                  <div class="col-md-4">
-                    <p>No ID :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].no_id}}</p>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].nik">
+                    <p>NIK :</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].nik}}</p>
                   </div>
-                  <div class="col-md-4">
-                    <p>No. HP :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].no_wa}}</p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Alamat :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].alamat}}</p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Provinsi :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].provinsi.keterangan}}</p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Kabupaten/Kota :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].kabupaten.keterangan}}</p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Kode Pos</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].kode_pos}}</p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>NIB :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].nib}}</p>
-                  </div>
-                  <div class="col-md-4">
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].npwp">
                     <p>NPWP :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].npwp}}</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].npwp}}</p>
                   </div>
-                  <div class="col-md-4">
-                    <p>No. Kemenkumham :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].no_kemenkumham}}</p>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].alamat">
+                    <p>Alamat :</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].alamat}}</p>
                   </div>
-                  <div class="col-md-4">
-                    <p>No. Akta Notaris :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].no_akta_notaris}}</p>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].provinsi">
+                    <p>Provinsi :</p>
+                    <p class="font-weight-bold" >{{dataPerusahaan.anggota.professional[indexke].provinsi.keterangan}}</p>
                   </div>
-                  <div class="col-md-4">
-                    <p>Website :</p>
-                    <p class="font-weight-bold">{{dataPerusahaan.anggota.profesional[indexke].website}}</p>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].kabupaten">
+                    <p>Kabupaten/Kota :</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].kabupaten.keterangan}}</p>
+                  </div>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].kecamatan">
+                    <p>Kecamatan :</p>
+                    <p class="font-weight-bold" >{{dataPerusahaan.anggota.professional[indexke].kecamatan.keterangan}}</p>
+                  </div>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].kelurahan">
+                    <p>Kelurahan :</p>
+                    <p class="font-weight-bold" >{{dataPerusahaan.anggota.professional[indexke].kelurahan.keterangan}}</p>
+                  </div>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].kode_pos">
+                    <p>Kode Pos</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].kode_pos}}</p>
+                  </div>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].keahlian">
+                    <p>Keahlian :</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].keahlian}}</p>
+                  </div>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].nama_perusahaan">
+                    <p>Nama Perusahaan :</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].nama_perusahaan}}</p>
+                  </div>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].email_perusahaan">
+                    <p>Email Perusahaan:</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].email_perusahaan}}</p>
+                  </div>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].alamat_perusahaan">
+                    <p>Alamat Perusahaan:</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].alamat_perusahaan}}</p>
+                  </div>
+                  <div class="col-md-4" v-if="dataPerusahaan.anggota.professional[indexke].no_id">
+                    <p>No ID :</p>
+                    <p class="font-weight-bold">{{dataPerusahaan.anggota.professional[indexke].no_id}}</p>
                   </div>
               </div>
             </div>
@@ -228,7 +219,7 @@ export default {
   methods: {
     unapprove(e) {
       document.getElementById('loading').style.display = 'flex';
-      axios.get(`${process.env.VUE_APP_API}unapprove/anggota?id=${e}`, {
+      axios.get(`${process.env.VUE_APP_API}unapprove/professional?id=${e}`, {
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },
@@ -258,7 +249,7 @@ export default {
         });
     },
     approve(e) {
-      axios.get(`${process.env.VUE_APP_API}approve/anggota?id=${e}`, {
+      axios.get(`${process.env.VUE_APP_API}approve/professional?id=${e}`, {
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },

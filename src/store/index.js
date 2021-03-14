@@ -14,6 +14,7 @@ export default new Vuex.Store({
     kabupaten: [],
     rayons: [],
     asosiasi: [],
+    parentid: [],
   },
   mutations: {
     GET_KATEGORI(state, data) {
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     },
     GET_ASOSIASI(state, data) {
       state.asosiasi = data.asosiasi;
+    },
+    GET_PARENTID(state, data) {
+      state.parentid = data;
     },
   },
   actions: {

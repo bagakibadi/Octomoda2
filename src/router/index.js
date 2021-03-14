@@ -13,6 +13,7 @@ import Perusahaan from '../views/AnggotaPerusahaan.vue';
 import Supply from '../views/SupplyChain.vue';
 import ProfileProfesional from '../views/ProfileProfesional.vue';
 import Darat from '../views/Udara.vue';
+import KetersediaanDarat from '../views/KetersediaanDarat.vue';
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,11 @@ const routes = [
     path: '/darat',
     name: 'Darat',
     component: Darat,
+  },
+  {
+    path: '/ketersediaan-darat',
+    name: 'Ketersediaan Darat',
+    component: KetersediaanDarat,
   },
   {
     path: '/login',

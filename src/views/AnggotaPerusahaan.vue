@@ -1,11 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
 <div>
-  <div class="loading" id="loading">
-    <div class="overlay-modal"></div>
-    <i class="fa fa-spinner fa-spin"></i>
-    <h1>Loading</h1>
-  </div>
   <Navbar/>
     <div class="page-wrapper">
       <!-- Page Content-->
@@ -22,22 +17,6 @@
                         <input type="text" placeholder="Search" class="form-control" name="" id="">
                       </div>
                     </div>
-                    <!-- <div class="col-md-3">
-                      <div class="form-search">
-                        <select name="wilayah" class="form-control" id="wilayah">
-                          <option value="" selected>Wilayah</option>
-                          <option value="">Wilayah</option>
-                          <option value="">Wilayah</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-search">
-                        <select name="rayon" id="rayon" class="form-control">
-                          <option value="" selected>Rayon</option>
-                        </select>
-                      </div>
-                    </div> -->
                     <div class="col-md-3">
                       <button class="btn btn-primary" @click="loading"><i class="fa fa-search"></i> Tampilkan Data</button>
                     </div>
@@ -52,14 +31,12 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between mb-4">
                     <h4 class="page-title">Daftar Perusahaan</h4>
-                    <!-- <button data-toggle="modal" @click="modaltambah" class="btn btn-secondary">+ Tambah Rayon</button> -->
                   </div>
                   <div style="overflow-x: auto;" v-if="dataPerusahaan !== null">
                     <table id="datatable2" class="table table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr>
                           <th>No</th>
-                          <!-- <th>Rayon</th> -->
                           <th>Nama Perusahaan</th>
                           <th>Domisili</th>
                           <th>Email</th>

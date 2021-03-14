@@ -345,6 +345,15 @@
                         </select>
                       </div>
                     </div>
+                    <div class="col-md-12" v-if="tambahrayon.rayon_id === 3">
+                      <div class="form-tambah">
+                        <label for="dpc">Parent</label>
+                        <select name="dpc" id="dpc" v-model="tambahrayon.parent_id" class="form-control" required>
+                          <option value="" disabled selected>Pilih Parent</option>
+                          <option :value="item.id" v-for="(item, index) in parent" :key="index.id">{{item.nama}}</option>
+                        </select>
+                      </div>
+                    </div>
                     <div class="col-md-6">
                       <div class="form-tambah">
                         <label for="namaRayon">Nama Rayon</label>
@@ -480,6 +489,7 @@ export default {
       datarayon: null,
       dataPerusahaan: null,
       dataProfesional: null,
+      parent: [],
     };
   },
   components: {
@@ -499,6 +509,9 @@ export default {
     },
     kec_id() {
       return this.tambahrayon.kec_id;
+    },
+    dpc() {
+      return this.tambahrayon.rayon_id;
     },
   },
   methods: {
@@ -538,6 +551,7 @@ export default {
         kel_id: this.tambahrayon.kel_id,
         email: this.tambahrayon.email,
         website: this.tambahrayon.website,
+        parent_id: this.tambahrayon.parent_id,
       }, {
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
@@ -558,7 +572,14 @@ export default {
               'Success',
               res.data.msg,
               'success',
-            );
+            ).then((result) => {
+              if (result.isConfirmed) {
+                this.$router.go();
+              }
+            })
+              .catch((err) => {
+                console.log(err);
+              });
           }
         })
         .catch((err) => {
@@ -725,6 +746,25 @@ export default {
     });
   },
   watch: {
+    dpc(val) {
+      console.log(val);
+      if (val === 3) {
+        axios.get(`${process.env.VUE_APP_API}data_rayon?parent_id=0`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+          },
+        })
+          .then((res) => {
+            console.log(res);
+            this.parent = res.data.data_rayon;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      // } else {
+      //   this.parentid = [];
+      }
+    },
     prov_id(val) {
       if (val) {
         console.log('aa');

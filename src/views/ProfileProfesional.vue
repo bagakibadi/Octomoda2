@@ -26,7 +26,10 @@
                 <div class="card-body">
                   <h4 class="mt-0 header-title">Edit Profile</h4>
                   <p class="text-danger mb-3" v-if="msg === 1">Mohon Lengkapi Profile</p>
-                  <p class="text-warning mb-3" v-if="msg === 2">Terimakasih Data Sedang Ditinjau</p>
+                  <div v-if="msg === 2" class="d-flex my-3 justify-content-between">
+                    <p class="text-warning mb-3">Terimakasih Data Sedang Ditinjau</p>
+                    <button class="btn btn-success align-self-center" @click="openNomer">Dapatkan Nomor Rayon</button>
+                  </div>
                   <p class="text-danger mb-3" v-if="msg === 0"></p>
                   <form action="" @submit.prevent="saveprofile">
                     <div class="row">
@@ -51,33 +54,33 @@
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="namaperusahaan" class="col-sm-2 col-form-label text-right">Nama Perusahaan</label>
+                            <label for="nama" class="col-sm-2 col-form-label text-right">Nama</label>
                             <div class="col-sm-4">
-                              <input type="text" name="namaperusahaan" id="namaperusahaan" placeholder="Nama Perusahaan" class="form-control" v-model="profile.nama">
+                              <input type="text" name="nama" id="nama" placeholder="Nama" class="form-control" v-model="profile.nama">
                             </div>
-                            <label for="namaing" class="col-sm-2 col-form-label text-right">Name Perusahaan</label>
+                            <label for="no_id" class="col-sm-2 col-form-label">No ID</label>
                             <div class="col-sm-4">
-                              <input type="text" name="namaing" id="namaing" placeholder="Nama Perusahaan (Inggris)" class="form-control" v-model="profile.nama_ing">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="row">
-                            <label for="email" class="col-sm-2 col-form-label">Alamat Email</label>
-                            <div class="col-sm-4">
-                              <input type="email" name="email" id="email" v-model="profile.email" class="form-control" placeholder="Email">
-                            </div>
-                            <label for="telp" class="col-sm-2 col-form-label">No. Telp</label>
-                            <div class="col-sm-4">
-                              <input type="number" name="telp" id="telp" v-model="profile.no_wa" class="form-control" placeholder="No. WA Kantor">
+                              <input type="number" name="no_id" id="no_id" v-model="profile.no_id" class="form-control" placeholder="No ID">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="alamat" class="col-sm-2 col-form-label text-right">Alamat Kantor</label>
+                            <!-- <label for="nowa" class="col-sm-2 col-form-label text-right">NO. WA</label>
+                            <div class="col-sm-4">
+                              <input type="number" name="nowa" id="nowa" class="form-control" placeholder="No Whatsapp" v-model="profile.telepon">
+                            </div> -->
+                            <label for="email" class="col-sm-2 col-form-label text-right">Email</label>
+                            <div class="col-sm-4">
+                              <input type="email" name="email" id="email" class="form-control" placeholder="Email" v-model="profile.email">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="row">
+                            <label for="alamat" class="col-sm-2 col-form-label text-right">Alamat</label>
                             <div class="col-sm-10">
-                              <textarea name="alamat" placeholder="Alamat Kantor" id="alamat" class="form-control" cols="30" rows="2" v-model="profile.alamat"></textarea>
+                              <textarea name="alamat" placeholder="Alamat" id="alamat" class="form-control" cols="30" rows="2" v-model="profile.alamat"></textarea>
                             </div>
                           </div>
                         </div>
@@ -123,76 +126,65 @@
                             <div class="col-sm-4">
                               <input type="text" name="kodepos" id="kodepos" v-model="profile.kode_pos" class="form-control" placeholder="Kode Pos">
                             </div>
-                            <label for="no_id" class="col-sm-2 col-form-label">No ID</label>
+                            <label for="tempatLahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
                             <div class="col-sm-4">
-                              <input type="number" name="no_id" id="no_id" v-model="profile.no_id" class="form-control" placeholder="No ID">
+                              <input type="text" name="tempatLahir" id="tempatLahir" v-model="profile.tempat_lahir" class="form-control" placeholder="Tempat Lahir">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="kbli" class="col-sm-2 col-form-label">KBLI</label>
+                            <label for="tanngallahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                             <div class="col-sm-4">
-                              <input type="number" name="kbli" id="kbli" placeholder="KBLI" v-model="profile.kbli" class="form-control">
+                              <input type="date" name="tanggallahir" id="tanggallahir" v-model="profile.tanggal_lahir" class="form-control" placeholder="Tanggal Lahir">
                             </div>
-                            <label for="domisili" class="col-sm-2 col-form-label">Domisili</label>
+                            <label for="nik" class="col-sm-2 col-form-label">NIK</label>
                             <div class="col-sm-4">
-                              <input type="text" name="domisili" class="form-control" id="domisili" v-model="profile.domisili">
+                              <input type="number" name="nik" id="nik" placeholder="NIK" v-model="profile.nik" class="form-control">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="nib" class="col-sm-2 col-form-label">Nib</label>
+                            <label for="keahlian" class="col-sm-2 col-form-label">Keahlian</label>
                             <div class="col-sm-4">
-                              <input type="number" name="nib" id="nib" v-model="profile.nib" class="form-control" placeholder="Nib">
+                              <input type="text" name="keahlian" id="keahlian" v-model="profile.keahlian" class="form-control" placeholder="Keahlian">
                             </div>
                             <label for="npwp" class="col-sm-2 col-form-label">NPWP</label>
                             <div class="col-sm-4">
-                              <input type="number" name="npwp" id="npwp" v-model="profile.npwp" class="form-control" placeholder="NPWP">
+                              <input type="text" name="npwp" class="form-control" id="NPWP" v-model="profile.npwp">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="nonotaris" class="col-sm-2 col-form-label">No. Akta Notaris</label>
+                            <label for="namaPerusahaan" class="col-sm-2 col-form-label">Nama Perusahaan</label>
                             <div class="col-sm-4">
-                              <input type="text" name="nonotaris" id="nonotaris" v-model="profile.no_akta_notaris" class="form-control" placeholder="No. Akta Notaris">
+                              <input type="text" name="namaPerusahaan" id="namaPerusahaan" v-model="profile.nama_perusahaan" class="form-control" placeholder="Nama Perusahaan">
                             </div>
-                            <label for="kemenkumham" class="col-sm-2 col-form-label">No. Kemenkumham</label>
+                            <label for="emailperusahaan" class="col-sm-2 col-form-label">Email Perusahaan</label>
                             <div class="col-sm-4">
-                              <input type="text" name="kemenkumham" id="kemenkumham" v-model="profile.no_kemenkumham" class="form-control" placeholder="No. Kemenkunham">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="row">
-                            <label for="website" class="col-sm-2 col-form-label">Website</label>
-                            <div class="col-sm-4">
-                              <input type="text" name="website" id="website" v-model="profile.website" class="form-control" placeholder="Website">
-                            </div>
-                            <label for="siup" class="col-sm-2 col-form-label">SIUP</label>
-                            <div class="col-sm-4">
-                              <input type="text" name="siup" id="siup" v-model="profile.siup" class="form-control" placeholder="SIUP">
+                              <input type="email" name="emailperusahaan" id="emailperusahaan" v-model="profile.email_perusahaan" class="form-control" placeholder="Email Perusahaan">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <div class="row">
-                            <label for="tdp" class="col-sm-2 col-form-label">TDP</label>
-                            <div class="col-sm-4">
-                              <input type="text" name="tdp" id="tdp" v-model="profile.tdp" class="form-control" placeholder="TDP">
+                            <label for="alamatPerusahaan" class="col-sm-2 col-form-label">Alamat Perusahaan</label>
+                            <div class="col-sm-10">
+                              <textarea name="alamatPerusahaan" placeholder="Alamat Perusahaan" id="alamatPerusahaan" class="form-control" cols="30" rows="2" v-model="profile.alamat_perusahaan"></textarea>
                             </div>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                           <div class="row">
-                            <label for="image">Logo Perusahaan</label>
+                            <label for="logoperusahaan" class="col-sm-2 col-form-label">Logo Perusahaan</label>
                             <div class="col-md-4">
-                              <input type="file" name="image" id="images" @change="upload" class="form-control">
+                              <input type="file" name="logoperusahaan" id="logoperusahaan" @change="upload" class="form-control">
                             </div>
+                            <img :src="profile.file_ktp" style="width: 100px" alt="">
                           </div>
-                        </div>
+                        </div> -->
                         <div class="row justify-content-end">
                           <button type="submit" class="btn btn-primary mr-3">Submit</button>
                         </div>
@@ -204,6 +196,34 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="modals" id="modal" >
+      <div class="overlay-modal"></div>
+      <div class="row justify-content-center align-items-center h-100">
+        <!-- <div class="col-md-7"> -->
+          <div class="card">
+            <div class="card-body">
+              <div class="logo-exit">
+                <div class="octomoda-img">
+                  <img class="logo-octomoda" src="../assets/images/octomoda.png" alt="">
+                  <img class="text-octomoda" src="../assets/images/octomodatext.png" alt="">
+                </div>
+                <div>
+                  <a href="#" @click="closemodal">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="head-modal text-center">
+                <img src="../assets/images/getnumber.png" alt="">
+                <h3>Verifikasi Data Diri</h3>
+                <p>Hubungi nomor berikut untuk mendapatkan Validasi Data Diri anda :</p>
+                <a :href="'https://wa.me/' + no_telp_rayon" style="font-weight: 500;font-size: 22px">{{no_telp_rayon}}</a>
+              </div>
+            </div>
+          </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -221,49 +241,57 @@ export default {
     return {
       profile: {},
       msg: 0,
-      imageSrc: null,
+      file_ktp: null,
+      no_telp_rayon: null,
     };
   },
   components: {
     Navbar,
   },
   methods: {
-    upload() {
-      const file = document.getElementById('images').files[0];
-      console.log(file);
+    closemodal() {
+      document.getElementById('modal').style.display = 'none';
+    },
+    openNomer() {
+      document.getElementById('modal').style.display = 'block';
+      // console.log(document.getElementById('modal'));
+    },
+    upload(a) {
+      // const file = document.getElementById('images').files[0];
+      console.log(a);
+      const file = a.target.files[0];
+
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.imageSrc = e.target.result;
+        this.profile.file_ktp = e.target.result;
       };
-      reader.onerror = (error) => {
-        console.log(error);
-      };
+      // reader.onerror = (error) => {
+      //   console.log(error);
+      // };
       reader.readAsDataURL(file);
     },
     saveprofile() {
       axios.post(`${process.env.VUE_APP_API}profile`, {
-        nama: this.profile.nama,
-        nama_ing: this.profile.nama_ing,
-        rayon_id: this.profile.rayon_id,
         asos_id: this.profile.asos_id,
+        no_id: this.profile.no_id,
+        nama: this.profile.nama,
+        rayon_id: this.profile.rayon_id,
         alamat: this.profile.alamat,
         prov_id: this.profile.prov_id,
         kab_id: this.profile.kab_id,
         kec_id: this.profile.kec_id,
         kel_id: this.profile.kel_id,
         kode_pos: this.profile.kode_pos,
-        no_wa: this.profile.no_wa,
-        email: this.profile.email,
-        website: this.profile.website,
-        nib: this.profile.nib,
-        kbli: this.profile.kbli,
-        domisili: this.profile.domisili,
-        siup: this.profile.siup,
-        tdp: this.profile.tdp,
+        tempat_lahir: this.profile.tempat_lahir,
+        tanggal_lahir: this.profile.tanggal_lahir,
+        nik: this.profile.nik,
         npwp: this.profile.npwp,
-        no_akta_notaris: this.profile.no_akta_notaris,
-        no_kemenkumham: this.profile.no_kemenkumham,
-        no_id: this.profile.no_id,
+        keahlian: this.profile.keahlian,
+        nama_perusahaan: this.profile.nama_perusahaan,
+        alamat_perusahaan: this.profile.alamat_perusahaan,
+        email_perusahaan: this.profile.email_perusahaan,
+        email: this.profile.email,
+        // file_ktp: this.profile.file_ktp,
       }, {
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
@@ -276,7 +304,11 @@ export default {
               res.data.msg,
               'Harap Tunggu Admin Untuk Memverifikasi Data',
               'success',
-            );
+            ).then((ret) => {
+              if (ret.isConfirmed) {
+                this.$router.go();
+              }
+            });
           } else {
             Swal.fire({
               icon: 'error',
@@ -325,52 +357,69 @@ export default {
       mutation: 'GET_ASOSIASI',
     });
   },
-  // beforeCreate() {
-  //   if (localStorage.token) {
-  //     axios.get(`${process.env.VUE_APP_API}user`, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.token}`,
-  //       },
-  //     })
-  //       .then((res) => {
-  //         console.log(res);
-  //         if (res.data.user.group_id === 3) {
-  //           this.$router.push('/profile-perusahaan');
-  //         } else if (res.data.user.group_id === 4) {
-  //           // this.$router.push('/profile-profesional');
-  //         } else if (res.data.user.group_id === 5) {
-  //           this.$router.push('/profile-rayon');
-  //         } else {
-  //           // this.$router.push
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //     axios.get(`${process.env.VUE_APP_API}profile`, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.token}`,
-  //       },
-  //     })
-  //       .then((res) => {
-  //         console.log(res);
-  //         if (res.data.approved === 1) {
-  //           this.msg = 0;
-  //           this.profile = res.data.profile;
-  //         } else if (res.data.success) {
-  //           this.profile = res.data.profile;
-  //           this.msg = 2;
-  //         } else {
-  //           this.msg = 1;
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } else {
-  //     this.$router.push('/login');
-  //   }
-  // },
+  beforeCreate() {
+    if (localStorage.token) {
+      axios.get(`${process.env.VUE_APP_API}user`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.data.success) {
+            if (res.data.user.group_id === 3) {
+              this.$router.push('/profile-perusahaan');
+            } else if (res.data.user.group_id === 2) {
+              this.$router.push('/profile');
+            } else if (res.data.user.group_id === 5) {
+              this.$router.push('/profile-rayon');
+            }
+          } else {
+            this.$router.push('/logout');
+          }
+          if (res.data.user.have_profile === 1) {
+            axios.get(`${process.env.VUE_APP_API}getambilwa`, {
+              headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+              },
+            })
+              .then((result) => {
+                this.no_telp_rayon = result.data.no_telp;
+              })
+              .catch((Err) => {
+                console.log(Err);
+              });
+          } else {
+            console.log('blom');
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      axios.get(`${process.env.VUE_APP_API}profile`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.data.approved === 1) {
+            this.msg = 0;
+            this.profile = res.data.profile;
+          } else if (res.data.success) {
+            this.profile = res.data.profile;
+            this.msg = 2;
+          } else {
+            this.msg = 1;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      this.$router.push('/login');
+    }
+  },
   watch: {
     prov_id(val) {
       if (val) {
@@ -414,5 +463,15 @@ export default {
 </script>
 
 <style>
-
+  .modals{
+    z-index: 9991;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    opacity: 1;
+    background: transparent;
+    display: none;
+  }
 </style>

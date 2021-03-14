@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <div class="loading" id="loading">
+      <div class="overlay-modal"></div>
+      <i class="fa fa-spinner fa-spin"></i>
+      <h1>Loading</h1>
+    </div>
     <router-view/>
   </div>
 </template>

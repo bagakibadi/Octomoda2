@@ -1,11 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
 <div>
-  <div class="loading" id="loading">
-    <div class="overlay-modal"></div>
-    <i class="fa fa-spinner fa-spin"></i>
-    <h1>Loading</h1>
-  </div>
   <div class="account-body accountbg" style="padding: 100px 0 50px 0;height: auto;min-height: 100vh">
       <!-- Log In page -->
       <div class="container">

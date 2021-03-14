@@ -1,11 +1,6 @@
 <template>
   <!-- eslint-disable max-len -->
   <div class="account-body accountbg" style="min-height: 100vh;padding: 100px 0 50px 0">
-    <div class="loading" id="loading">
-      <div class="overlay-modal"></div>
-      <i class="fa fa-spinner fa-spin"></i>
-      <h1>Loading</h1>
-    </div>
     <!-- Log In page -->
     <div class="container">
         <div class="row">
@@ -145,6 +140,7 @@ export default {
               'Login Berhasil!',
               'success',
             );
+            document.getElementById('loading').style.display = 'none';
           }
         })
         .catch((err) => {

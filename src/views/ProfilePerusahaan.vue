@@ -312,14 +312,16 @@ export default {
       })
         .then((res) => {
           console.log(res);
-          if (res.data.user.group_id === 3) {
-            // this.$router.push('/profile-perusahaan');
-          } else if (res.data.user.group_id === 4) {
-            this.$router.push('/profile-profesional');
-          } else if (res.data.user.group_id === 5) {
-            this.$router.push('/profile-rayon');
+          if (res.data.success) {
+            if (res.data.user.group_id === 2) {
+              this.$router.push('/profile');
+            } else if (res.data.user.group_id === 4) {
+              this.$router.push('/profile-profesional');
+            } else if (res.data.user.group_id === 5) {
+              this.$router.push('/profile-rayon');
+            }
           } else {
-            // this.$router.push
+            this.$router.push('/logout');
           }
         })
         .catch((err) => {

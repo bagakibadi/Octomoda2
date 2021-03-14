@@ -17,21 +17,22 @@
                     </div>
                     <div class="row">
                       <div class="col-md-6 my-3">
-                        <button class="btn btn-primary transport">
-                          <i class="fa fa-plane"></i><br>
-                          <h1>Transportasi <br> Udara</h1>
-                        </button>
-                      </div>
-                      <div class="col-md-6 my-3">
                         <button class="btn btn-warning transport">
                           <i class="fa fa-bus"></i>
-                          <h1>Transportasi <br> Darat</h1>
+                          <h2>Transportasi Darat</h2>
+                        </button>
+                      </div>
+
+                      <div class="col-md-6 my-3">
+                        <button class="btn btn-primary transport">
+                          <i class="fa fa-plane"></i><br>
+                          <h2>Transportasi Udara</h2>
                         </button>
                       </div>
                       <div class="col-md-6 my-3">
                         <button class="btn btn-danger transport">
                           <i class="fa fa-train"></i>
-                          <h1>Transportasi <br> Kereta Api</h1>
+                          <h2>Transportasi Kereta Api</h2>
                         </button>
                       </div>
                     </div>
@@ -64,8 +65,9 @@ export default {
   }
   .transport i {
     font-size: 90px;
+    margin-bottom: 10px;
   }
-  .transport h1 {
+  .transport h2 {
     margin: 0;
     color: white;
   }
